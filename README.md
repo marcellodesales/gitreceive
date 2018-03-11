@@ -80,14 +80,19 @@ You can see the receiver executing the following:
 ```
 $ docker exec -ti gitreceiver cat /home/git/receiver
 #!/bin/bash
-URL=http://requestb.in/rlh4znrl
-echo "----> Posting to $URL ..."
-curl \
-  -X 'POST' \
-  -F "repository=$1" \
-  -F "revision=$2" \
-  -F "username=$3" \
-  -F "fingerprint=$4" \
-  -F contents=@- \
-  --silent $URL
+echo ""
+echo "######## Git Receiver - by marcello.desales@gmail.com ##########"
+echo ""
+echo "==> repository: $1"
+echo "==> revision: $2"
+echo "==> username: $3"
+echo "==> fingerprint: $4"
+echo ""
+echo "==> Unpacking repo..."
+mkdir -p /tmp/build/$1 && cat | tar -x -C /tmp/build/$1
+echo ""
+for i in $(ls -R /tmp/build/$1/); do echo "-> $i"; done
+echo ""
+echo "Receiving done..."
+echo ""
 ```
