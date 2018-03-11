@@ -6,7 +6,7 @@ run     apt-get update -q \
         --no-install-recommends \
         git-core \
         openssh-server \
-        locales \
+        locales curl \
         && dpkg-reconfigure locales \
         && locale-gen C.UTF-8 \
         && /usr/sbin/update-locale LANG=C.UTF-8 \
@@ -19,7 +19,8 @@ env LC_ALL=C.UTF-8 \
     LANGUAGE=en_US.UTF-8
 
 # Setup gitreceive
-add     https://raw.github.com/progrium/gitreceive/master/gitreceive /usr/local/bin/
+#add     https://raw.github.com/progrium/gitreceive/master/gitreceive /usr/local/bin/
+add     gitreceive /usr/local/bin/
 add     receiver /home/git/receiver
 run     chmod 755 /usr/local/bin/gitreceive /home/git/receiver \
         usr/local/bin/gitreceive \
