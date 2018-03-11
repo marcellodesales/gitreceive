@@ -60,6 +60,21 @@ To localhost:myapp
  * [new branch]      master -> master
 ```
 
+* I have patched this to allow any branches to be pushed...
+
+```$ git push paas develop
+Total 0 (delta 0), reused 0 (delta 0)
+Receiving a push..
+==> repository: myapp
+==> revision: 9906a93e67f29316727e071f3b9b602c014ef2fc
+==> username: mdesales
+==> fingerprint: 7d:5f:8a:b0:f8:43:9f:a1:b3:91:7f:48:62:27:17:ec
+
+----> Unpacking repo...
+To localhost:myapp
+ * [new branch]      develop -> develop
+```
+
 You can see the receiver executing the following:
 
 ```
