@@ -29,6 +29,12 @@ setup_receiver_script() {
 #!/bin/bash
 URL=http://requestb.in/rlh4znrl
 echo "----> Posting to \$URL ..."
+echo "Receiving a push.."
+echo "==> repository: \$1"
+echo "==> revision: \$2"
+echo "==> username: \$3"
+echo "==> fingerprint: \$4"
+echo ""
 curl \\
   -X 'POST' \\
   -F "repository=\$1" \\

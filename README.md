@@ -44,12 +44,18 @@ You can now push to the receiver... It will execute the receive script...
 
 ```
 $ git push paas master
-Counting objects: 145, done.
+Counting objects: 12, done.
 Delta compression using up to 8 threads.
-Compressing objects: 100% (89/89), done.
-Writing objects: 100% (145/145), 24.45 KiB | 24.45 MiB/s, done.
-Total 145 (delta 39), reused 145 (delta 39)
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 6.56 KiB | 6.56 MiB/s, done.
+Total 12 (delta 2), reused 4 (delta 0)
 ----> Posting to http://requestb.in/rlh4znrl ...
+Receiving a push..
+==> repository: myapp
+==> revision: d1e5127f2a1822bfc2b6d93739634f64351c3be2
+==> username: mdesales
+==> fingerprint: 7d:5f:8a:b0:f8:43:9f:a1:b3:91:7f:48:62:27:17:ec
+
 To localhost:myapp
  * [new branch]      master -> master
 ```
