@@ -4,15 +4,17 @@ Gitreceive https://github.com/progrium/gitreceive
 
 # Build the image and run it as follows
 
-`docker build -t gitreceive .`
-`docker run gitreceive`
-`docker stop gitreceive && docker rm gitreceive && docker run --name gitreceive -d -p 22:22 gitreceiver
+```
+docker build -t gitreceive .
+docker run --name gitreceive -d -p 22:22 gitreceive
+```
 
-The container will expose port 22 (default ssh port) and have a docker volume mounted at /home/git.
+* The container will expose port 22 (default ssh port) and have a docker volume mounted at /home/git.
+* Make sure the receiver is correct
 
-Make sure the receiver is correct
-
-`docker exec -ti gitreceiver cat /home/git/receiver`
+```
+docker exec -ti gitreceiver cat /home/git/receiver
+```
 
 # Add Users
 
