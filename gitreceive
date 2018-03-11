@@ -27,7 +27,9 @@ setup_receiver_script() {
   local receiver_path="$home_dir/receiver"
   cat > "$receiver_path" <<EOF
 #!/bin/bash
-echo "Receiving a push.."
+echo ""
+echo "######## Git Receiver - by marcello.desales@gmail.com ##########"
+echo ""
 echo "==> repository: \$1"
 echo "==> revision: \$2"
 echo "==> username: \$3"
