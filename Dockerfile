@@ -3,7 +3,7 @@ MAINTAINER marcello.desales@gmail.com
 
 # Install dependencies and setup locales
 RUN apt-get update -q && apt-get install -y --no-install-recommends \
-    git-core openssh-server locales curl \
+    git-core openssh-server locales curl vim python3 \
         && dpkg-reconfigure locales \
         && locale-gen C.UTF-8 \
         && /usr/sbin/update-locale LANG=C.UTF-8 \
