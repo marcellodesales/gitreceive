@@ -5,8 +5,8 @@ Gitreceive https://github.com/progrium/gitreceive
 # Build the image and run it as follows
 
 ```
-docker build -t gitreceive .
-docker run --name gitreceive -d -p 22:22 gitreceive
+docker build -t marcellodesales/gitreceive .
+docker run --name gitreceive -d -p 22:22 marcellodesales/gitreceive
 ```
 
 * The container will expose port 22 (default ssh port) and have a docker volume mounted at /home/git.
