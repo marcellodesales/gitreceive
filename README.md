@@ -46,17 +46,30 @@ You can now push to the receiver... It will execute the receive script...
 
 ```
 $ git push paas master
-Counting objects: 12, done.
+Counting objects: 5, done.
 Delta compression using up to 8 threads.
-Compressing objects: 100% (12/12), done.
-Writing objects: 100% (12/12), 6.56 KiB | 6.56 MiB/s, done.
-Total 12 (delta 2), reused 4 (delta 0)
-----> Posting to http://requestb.in/rlh4znrl ...
-Receiving a push..
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 1.21 KiB | 1.21 MiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+
+
+######## Git Receiver - by marcello.desales@gmail.com ##########
+
 ==> repository: myapp
-==> revision: d1e5127f2a1822bfc2b6d93739634f64351c3be2
+==> label: branch 'master'
+==> revision: b61ad7b28d0beeee43297278acbede4f01745987
 ==> username: mdesales
 ==> fingerprint: 7d:5f:8a:b0:f8:43:9f:a1:b3:91:7f:48:62:27:17:ec
+
+==> Unpacking repo...
+-> sshkey
+-> gitreceive
+-> receiver
+-> Dockerfile
+-> sshkey.pub
+-> README.md
+
+Receiving done...
 
 To localhost:myapp
  * [new branch]      master -> master
@@ -64,15 +77,33 @@ To localhost:myapp
 
 * I have patched this to allow any branches to be pushed...
 
-```$ git push paas develop
-Total 0 (delta 0), reused 0 (delta 0)
-Receiving a push..
+```
+$ git push paas develop
+Counting objects: 20, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (20/20), 7.81 KiB | 7.81 MiB/s, done.
+Total 20 (delta 7), reused 4 (delta 0)
+
+
+######## Git Receiver - by marcello.desales@gmail.com ##########
+
 ==> repository: myapp
+==> label: branch 'develop'
 ==> revision: 9906a93e67f29316727e071f3b9b602c014ef2fc
 ==> username: mdesales
 ==> fingerprint: 7d:5f:8a:b0:f8:43:9f:a1:b3:91:7f:48:62:27:17:ec
 
-----> Unpacking repo...
+==> Unpacking repo...
+-> sshkey
+-> gitreceive
+-> receiver
+-> Dockerfile
+-> sshkey.pub
+-> README.md
+
+Receiving done...
+
 To localhost:myapp
  * [new branch]      develop -> develop
 ```
@@ -81,20 +112,4 @@ You can see the receiver executing the following:
 
 ```
 $ docker exec -ti gitreceiver cat /home/git/receiver
-#!/bin/bash
-echo ""
-echo "######## Git Receiver - by marcello.desales@gmail.com ##########"
-echo ""
-echo "==> repository: $1"
-echo "==> revision: $2"
-echo "==> username: $3"
-echo "==> fingerprint: $4"
-echo ""
-echo "==> Unpacking repo..."
-mkdir -p /tmp/build/$1 && cat | tar -x -C /tmp/build/$1
-echo ""
-for i in $(ls -R /tmp/build/$1/); do echo "-> $i"; done
-echo ""
-echo "Receiving done..."
-echo ""
 ```
