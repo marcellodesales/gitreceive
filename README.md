@@ -2,31 +2,37 @@
 
 Gitreceive https://github.com/progrium/gitreceive
 
-# Build the image and run it as follows
+# Running
 
 ```
-docker build -t marcellodesales/gitreceive .
 docker run --name gitreceive -d -p 22:22 marcellodesales/gitreceive
 ```
 
 * The container will expose port 22 (default ssh port) and have a docker volume mounted at /home/git.
-* Make sure the receiver is correct
+
+> Making port binding to other ports makes it harder to connect to the container.
+
+* Make sure the receiver is correctly setup in your host.
 
 ```
 docker exec -ti gitreceiver cat /home/git/receiver
 ```
 
-# Add Users
+# Add Keys
 
 To allow someone push to gitreceive, you need to add their public key.
 
-`cat ~/.ssh/id_rsa.pub | ssh -i sshkey root@localhost "gitreceive upload-key mdesales"`
+> Make sure to review details at https://github.com/progrium/gitreceive
+
+```
+cat ~/.ssh/id_rsa.pub | ssh -i sshkey root@localhost "gitreceive upload-key mdesales"
+```
 
 * The ssh keys are provided for convenience. You must create your own in any serious use.*
 
-# Add Repo
+# Receiving Git changes
 
-Simply add a git repo and push
+* Simply add the server as an origin of a directory with a github repo.
 
 ```
 $ git remote add paas git@localhost:myapp
@@ -42,7 +48,7 @@ $ git remote show paas
     master pushes to master (up to date)
 ```
 
-You can now push to the receiver... It will execute the receive script...
+* You can now push to the receiver... It will execute the receive script...
 
 ```
 $ git push paas master
@@ -108,7 +114,7 @@ To localhost:myapp
  * [new branch]      develop -> develop
 ```
 
-You can see the receiver executing the following:
+* You can see the receiver executing the following:
 
 ```
 $ docker exec -ti gitreceiver cat /home/git/receiver
